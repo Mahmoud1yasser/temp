@@ -1,8 +1,7 @@
 Group Project on creating custom printf function
 
 Brief description of submitted files:
-
-holberton.h - header file containing the prototypes of each function and defines a struct
+header_functions.h - header file containing the prototypes of each function and defines a struct
 
 man_3_printf - man page containing details about the usage of _printf function
 
@@ -25,3 +24,4 @@ print_number_buff.c - functions that copies signed as well as unsigned ints digi
 print_number_buff.c Print out the buffer of all characters when its 1024 chars in it
 
 tests/main.c - contains main to test the files
+:x
