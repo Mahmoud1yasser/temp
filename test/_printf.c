@@ -67,7 +67,7 @@ int formatprinter(const char *format, va_list to_be_printed, char buffer[], int 
 {
 	int pos, print, chars;
 
-	for (pos = 0; format != '\0' && format != NULL; pos++)
+	for (pos = 0; format[pos] != '\0' && format != NULL; pos++)
 	{
 		if (format[pos] == '%')
 		{
