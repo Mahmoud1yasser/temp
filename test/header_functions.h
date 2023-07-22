@@ -18,8 +18,7 @@ typedef struct char_func
 } char_funcs;
 
 int _printf(const char *, ...);
-int print_c(va_list, char *, int, int);
-void write_buffer(char *, int, int);
-void initialize_buffer(char );
-int copy_to_buffer(char formatter, char buffer[], int *, int*);
-int check_conversion(char formatter, char_funcs_t conversions[], char buffer[], int *, int *, va_list)
+void initialize_buffer(char *);
+int print_c(va_list, char *, int *, int *);
+void write_buffer(char *, int *, int *);
+#endif

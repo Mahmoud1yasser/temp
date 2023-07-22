@@ -7,7 +7,7 @@
  * @buflen: Pointer to the length of buffer
  * @bufpos: Pointer to the postion inside buffer
  */
-void write_buffer(char buffer[], int *buflen, int *bufpos)
+void write_buffer(char *buffer, int *buflen, int *bufpos)
 {
 	write(1, buffer, *buflen - 1);
 	*bufpos = 0;

@@ -58,38 +58,35 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
 	}
 	return (0);
 }
-/**
+
 /** formatprinter - function search in string format for the %.
  * @format: string which contains list of % indentifier.
  * Return: position of identifier.
  */
-void formatprinter(const char *format,va_list to_be_printed, char_funcs conversion[],char buffer[], int *buflenptr, int *bufposptr)
+int formatprinter(const char *format, va_list to_be_printed, char buffer[], int *buflenptr, int *bufposptr, char_funcs conversions[])
 {
-	int pos;
+	int pos, print, chars;
 
-	for (pos = 0; str != '\0' && str != NULL; pos++)
+	for (pos = 0; format != '\0' && format != NULL; pos++)
 	{
 		if (format[pos] == '%')
 		{
-			print = check_conversion(format[pos + 1], char_func_t conversions[], buffer[], buflen, bufpos);
+			print = check_conversion(format [pos + 1], conversions, buffer, buflenptr, bufposptr, to_be_printed);
 			if (print == 0)
 			{
-				chars += copy_to_buffer(format[i], buffer, buflenptr, bufposptr);
+				chars += copy_to_buffer(format[pos], buffer, buflenptr, bufposptr);
 			}
 			chars += print;
-		}
-		else if (str[ident_pos] == '\\')
-		{
-			/* to check for new line if exist*/
 		}
 		else
 		{
 		 	/* copy to buffer*/
 			/* increase count of printed chars*/
-			chars += copy_to_buffer(format[i],
+			chars += copy_to_buffer(format[pos],
 					buffer, buflenptr, bufposptr);
 		}
 	}
+	return (chars);
 }
 
 /**
@@ -101,6 +98,9 @@ void formatprinter(const char *format,va_list to_be_printed, char_funcs conversi
 int _printf(const char *format, ...)
 {
 	va_list to_be_printed;
+	int chars, bufpos, *buflenptr, *bufposptr, buflen;
+	char buffer[1024];
+	char_funcs conversions[] = {{"c", print_c}, {NULL, NULL}};
 
 	initialize_buffer(buffer);
 	chars = bufpos = 0;
@@ -108,13 +108,12 @@ int _printf(const char *format, ...)
 	buflenptr = &buflen;
 	bufposptr = &bufpos;
 	/* should be moved up as its decleration*/
-	char_funcs conversions[] = {{"c", print_c},
-		{NULL, NULL},
-	};
-	formatprinter(format, print_this,
+	formatprinter(format, to_be_printed,
 			buffer, buflenptr, bufposptr,
 			conversions);
 	va_start(to_be_printed, format);
 	va_end(to_be_printed);
+	return (chars);
 
 }
+
