@@ -71,7 +71,8 @@ int formatprinter(const char *format, va_list to_be_printed, char buffer[], int 
 	{
 		if (format[pos] == '%')
 		{
-			print = check_conversion(format [pos + 1], conversions, buffer, buflenptr, bufposptr, to_be_printed);
+			pos++;
+			print = check_conversion(format [pos], conversions, buffer, buflenptr, bufposptr, to_be_printed);
 			if (print == 0)
 			{
 				chars += copy_to_buffer(format[pos], buffer, buflenptr, bufposptr);
@@ -102,16 +103,21 @@ int _printf(const char *format, ...)
 	char buffer[1024];
 	char_funcs conversions[] = {{"c", print_c}, {NULL, NULL}};
 
+	va_start(to_be_printed, format);
 	initialize_buffer(buffer);
 	chars = bufpos = 0;
 	buflen = 1;
 	buflenptr = &buflen;
 	bufposptr = &bufpos;
 	/* should be moved up as its decleration*/
+	if (format == NULL || to_be_printed == NULL)
+		{
+			return (chars);
+		}
 	formatprinter(format, to_be_printed,
 			buffer, buflenptr, bufposptr,
 			conversions);
-	va_start(to_be_printed, format);
+	write_buffer(buffer, buflenptr, bufposptr);
 	va_end(to_be_printed);
 	return (chars);
 
