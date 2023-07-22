@@ -18,7 +18,7 @@ typedef struct char_func
 } char_funcs;
 
 int _printf(const char *, ...);
-void initialize_buffer(char *);
+void initialize_buffer(char );
 int print_c(va_list, char *, int *, int *);
 void write_buffer(char *, int *, int *);
 #endif

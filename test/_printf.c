@@ -120,6 +120,5 @@ int _printf(const char *format, ...)
 	write_buffer(buffer, buflenptr, bufposptr);
 	va_end(to_be_printed);
 	return (chars);
-
 }
 
