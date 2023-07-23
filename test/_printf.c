@@ -1,4 +1,4 @@
-#include "header_functions.h"
+#include "main.h"
 /**
 * copy_to_buffer - Copies the given character over to the buffer
 * @formatter: Character to copy over
@@ -47,7 +47,7 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
 	int j, chars;
 
 	chars = 0;
-	for (j = 0; j < 2; j++)
+	for (j = 0; j < 5; j++)
 	{
 		if (formatter == *conversions[j].c)
 		{
@@ -76,6 +76,7 @@ int formatprinter(const char *format,
 {
 	int pos, print, chars;
 
+	chars = 0;
 	for (pos = 0; format[pos] != '\0' && format != NULL; pos++)
 	{
 		if (format[pos] == '%')
@@ -112,7 +113,11 @@ int _printf(const char *format, ...)
 	int chars, bufpos, *buflenptr, *bufposptr, buflen;
 	char buffer[1024];
 	char_funcs conversions[] = {{"c", print_c},
-		{"s", print_s}};
+		{"s", print_s},
+		{"i", print_int},
+		{"d", print_int},
+		{"u", print_u},
+	};
 	va_start(to_be_printed, format);
 	initialize_buffer(buffer);
 	chars = bufpos = 0;
@@ -123,7 +128,7 @@ int _printf(const char *format, ...)
 	{
 		return (chars);
 	}
-	formatprinter(format, to_be_printed,
+	chars = formatprinter(format, to_be_printed,
 			buffer, buflenptr, bufposptr,
 			conversions);
 	write_buffer(buffer, buflenptr, bufposptr);
