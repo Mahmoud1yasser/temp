@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 /**
- * char_func - structure to find functions based on char
+ * struct char_func - structure to find functions based on char
  * @c: char to be checked as key.
  * @f: pointer to function to call.
  */
