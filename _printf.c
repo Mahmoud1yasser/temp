@@ -124,9 +124,9 @@ int _printf(const char *format, ...)
 	ptrblen = &blen;
 	ptrbpos = &bpos;
 	if ((format[0] == '%' && format[1] == ' ')
-		       	|| format == NULL
+			|| format == NULL
 			|| to_be_printed == NULL
-			|| (format[0] == '%' && format[1] == '\0' ))
+			|| (format[0] == '%' && format[1] == '\0'))
 	{
 		return (-1);
 	}
