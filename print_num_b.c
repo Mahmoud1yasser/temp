@@ -10,10 +10,7 @@
  */
 int print_number(int n, char buffer[], int *len, int *pos)
 {
-	int chars;
-	int sign;
-
-	chars = sign = 0;
+	int chars = 0, sign = 0;
 
 	if (*len < 1024)
 	{
