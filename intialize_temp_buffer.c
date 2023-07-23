@@ -1,17 +1,18 @@
 #include "main.h"
 
 /**
- * initialize_buffer - Fill the buffer with null characters for
- *
- * sake of proper write use
+ * init_buf - Fill the buffer with null characters
  *
  * @buffer: The buffer that needs to be initialized
 */
 
-void initialize_buffer(char buffer[])
+void init_buf(char buffer[])
 {
 	int i;
 
+	buffer = (char *)malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+		return;
 	i = 0;
 	while (i < 1024)
 	{

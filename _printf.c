@@ -58,14 +58,14 @@ int check_con(char formatter, char_funcs con[], char buffer[],
 	return (0);
 }
 /**
- * formatprinter - function search in string format for the %.
+ * formatp - function search in string format for the %.
  * @format: string which contains list of % indentifier.
  * @to_be_printed: arguments in printf
  * @buffer: memory for printing
- * @buflenptr: pointer to buffer length
- * @bufposptr: pointer to current
+ * @ptrblen: pointer to buffer length
+ * @ptrbpos: pointer to current
  * position in buffer
- * @conversions: pointer to format func.
+ * @con: pointer to format func.
  * Return: position of identifier.
  */
 int formatp(const char *format,
@@ -123,7 +123,10 @@ int _printf(const char *format, ...)
 	blen = 1;
 	ptrblen = &blen;
 	ptrbpos = &bpos;
-	if ((format[0] == '%' && format == NULL) || to_be_printed == NULL)
+	if ((format[0] == '%' && format[1] == ' ')
+			|| format == NULL
+			|| to_be_printed == NULL
+			|| (format[0] == '%' && format[1] == '\0'))
 	{
 		return (-1);
 	}

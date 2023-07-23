@@ -2,7 +2,7 @@
 /**
  * print_number - Copy one digit at a time to the buffer
  * @n: The integer to print
- * @buffer: Buffer 
+ * @buffer: Buffer
  * @len: Length of the buffer,
  * @pos: Position in the buffer
  *
@@ -10,12 +10,8 @@
  */
 int print_number(int n, char buffer[], int *len, int *pos)
 {
-	int chars;
-	int sign;
+	int chars = 0, sign = 0;
 
-	chars = sign = 0;
-	if (*len < 1024)
-	{
 		if (n == 0)
 		{
 			buffer[*pos] = '0';
@@ -37,9 +33,8 @@ int print_number(int n, char buffer[], int *len, int *pos)
 			sign = 1;
 		}
 		if ((n / 10) != 0)
-		{
-			chars = print_number(((n / 10) * -1), buffer, len, pos);
-		}
+			chars = print_number(((n / 10) * -1)
+					, buffer, len, pos);
 		buffer[*pos] = (n % 10) * -1 + '0';
 		*len += 1;
 		*pos += 1;
@@ -48,43 +43,6 @@ int print_number(int n, char buffer[], int *len, int *pos)
 		if (sign > 0)
 			chars += sign;
 		chars++;
-		}
-	else
-	{
-		write_buf(buffer, len, pos);
-		if (n == 0)
-		{
-			buffer[*pos] = '0';
-			*pos += 1;
-			*len += 1;
-			if (*len == 1024)
-				write_buf(buffer, len, pos);
-			return (1);
-		}
-		else if (n > 0)
-			n *= -1;
-		else
-		{
-			buffer[*pos] = '-';
-			*pos += 1;
-			*len += 1;
-			if (*len == 1024)
-				write_buf(buffer, len, pos);
-			sign = 1;
-		}
-		if ((n / 10) != 0)
-		{
-			chars = print_number(((n / 10) * -1), buffer, len, pos);
-		}
-		buffer[*pos] = (n % 10) * -1 + '0';
-		*pos += 1;
-		*len += 1;
-		if (*len == 1024)
-			write_buf(buffer, len, pos);
-		if (sign > 0)
-			chars += sign;
-		chars++;
-		}
 	return (chars);
 }
 
@@ -102,8 +60,10 @@ int print_Unum(unsigned int n, char buffer[], int *len, int *pos)
 	int num_Chars;
 
 	num_Chars = 0;
+
 	if (*len < 1024)
 	{
+here2:
 		if (n == 0)
 		{
 			buffer[*pos] = '0';
@@ -125,23 +85,7 @@ int print_Unum(unsigned int n, char buffer[], int *len, int *pos)
 	else
 	{
 		write_buf(buffer, len, pos);
-		if (n == 0)
-		{
-			buffer[*pos] = '0';
-			*pos += 1;
-			*len += 1;
-			if (*len == 1024)
-				write_buf(buffer, len, pos);
-			return (1);
-		}
-		if ((n / 10) != 0)
-			num_Chars = print_Unum((n / 10), buffer, len, pos);
-		buffer[*pos] = (n % 10) + '0';
-		*pos += 1;
-		*len += 1;
-		if (*len == 1024)
-			write_buf(buffer, len, pos);
-		num_Chars++;
+		goto here2;
 	}
 	return (num_Chars);
 }
