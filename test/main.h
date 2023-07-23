@@ -20,10 +20,10 @@ typedef struct char_func
 } char_funcs;
 
 int _printf(const char *, ...);
-void initialize_buffer(char *);
-int print_c(va_list, char *, int *, int *);
-int print_s(va_list, char *, int *, int *);
-int print_int(va_list, char *, int *, int *);
+void init_buf(char *);
+int print_char(va_list, char *, int *, int *);
+int print_str(va_list, char *, int *, int *);
+int print_integr(va_list, char *, int *, int *);
 int print_u(va_list, char *, int *, int *);
 int print_number(int, char *, int *, int *);
 int print_Unum(unsigned int , char *, int *, int *);
@@ -40,5 +40,5 @@ char *binConverter(unsigned int);
 char *octConverter(unsigned int);
 char *hexConverter(char, unsigned int);
 char *size_tHex(char, size_t);
-void write_buffer(char *, int *, int *);
+void write_buf(char *, int *, int *);
 #endif
