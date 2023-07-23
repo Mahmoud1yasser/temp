@@ -46,7 +46,7 @@ int check_con(char formatter, char_funcs con[], char buffer[],
 	int j, chars;
 
 	chars = 0;
-	for (j = 0; j < 5; j++)
+	for (j = 0; con[j].c != NULL; j++)
 	{
 		if (formatter == *con[j].c)
 		{
@@ -55,7 +55,7 @@ int check_con(char formatter, char_funcs con[], char buffer[],
 			return (chars);
 		}
 	}
-	return (0);
+	return (-1);
 }
 /**
  * formatp - function search in string format for the %.
@@ -116,6 +116,7 @@ int _printf(const char *format, ...)
 		{"i", print_integr},
 		{"d", print_integr},
 		{"u", print_u},
+		{NULL, NULL},
 	};
 	va_start(to_be_printed, format);
 	init_buf(buffer);
