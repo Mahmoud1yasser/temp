@@ -126,7 +126,7 @@ int _printf(const char *format, ...)
 	if ((format[0] == '%' && format[1] == ' ')
 		       	|| format == NULL
 			|| to_be_printed == NULL
-			|| format == '%')
+			|| (format[0] == '%' && format[1] == '\0' )
 	{
 		return (-1);
 	}
