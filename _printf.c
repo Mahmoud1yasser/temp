@@ -123,7 +123,7 @@ int _printf(const char *format, ...)
 	blen = 1;
 	ptrblen = &blen;
 	ptrbpos = &bpos;
-	if ((format[0] == '%' &&
+	if (format[0] == '%' &&
 			       	format[1] == ' ' && format == NULL
 			       	&&  to_be_printed == NULL)
 	{
