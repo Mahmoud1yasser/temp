@@ -32,7 +32,7 @@ int print_c(va_list args, char buffer[], int *buflen, int *bufpos)
 	return (1);
 }
 /**
- * print_string - Copy a string into the buffer & print if buffer is full
+ * print_s - Copy a string into the buffer & print if buffer is full
  * @args: Va_list of all given arguments to _printf
  * @buffer: The buffer being copied to to print
  * @buflen: The current length of the buffer aka number of characters in buffer
