@@ -64,7 +64,7 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
  * @to_be_printed: arguments in printf
  * @buffer: memory for printing
  * @buflenptr: pointer to buffer length
- * @bufposptr: pointer to current 
+ * @bufposptr: pointer to current
  * position in buffer
  * @conversions: pointer to format func.
  * Return: position of identifier.
