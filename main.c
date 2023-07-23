@@ -1,6 +1,6 @@
 #include <limits.h>
 #include <stdio.h>
-#include "main.h"
+#include "header_functions.h"
 
 /**
  * main - Entry point
