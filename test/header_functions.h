@@ -20,5 +20,6 @@ typedef struct char_func
 int _printf(const char *, ...);
 void initialize_buffer(char *);
 int print_c(va_list, char *, int *, int *);
+int print_string(va_list, char *, int *, int *);
 void write_buffer(char *, int *, int *);
 #endif

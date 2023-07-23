@@ -101,7 +101,8 @@ int _printf(const char *format, ...)
 	va_list to_be_printed;
 	int chars, bufpos, *buflenptr, *bufposptr, buflen;
 	char buffer[1024];
-	char_funcs conversions[] = {{"c", print_c}, {NULL, NULL}};
+	char_funcs conversions[] = {{"c", print_c}, {NULL, NULL},
+		{"s", print_string}};
 
 	va_start(to_be_printed, format);
 	initialize_buffer(buffer);
