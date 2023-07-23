@@ -7,7 +7,8 @@ int main(void)
 	  char *str = "Bye"; */
 	char c = 'A';
 	char s[] = "Mahmoud";
-	_printf("this is a character a in capital %c", c);
-	_printf("this is a string name %s", s);
+	_printf("this is a character a in capital %c \n", c);
+	_printf("this is my name %s \n", s);
+	_printf("this is a to print %%");
 	return (0);
 }

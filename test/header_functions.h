@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
 /**
  * char_func - structure to find functions based on char
  * @c: char to be checked as key.
@@ -20,6 +22,7 @@ typedef struct char_func
 int _printf(const char *, ...);
 void initialize_buffer(char *);
 int print_c(va_list, char *, int *, int *);
-int print_string(va_list, char *, int *, int *);
+int print_s(va_list, char *, int *, int *);
+int print_percent(char *, int *, int *);
 void write_buffer(char *, int *, int *);
 #endif

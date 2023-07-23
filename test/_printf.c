@@ -47,7 +47,7 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
 	int j, chars;
 
 	chars = 0;
-	for (j = 0; j < 13; j++)
+	for (j = 0; j < 2; j++)
 	{
 		if (formatter == *conversions[j].c)
 		{
@@ -101,9 +101,8 @@ int _printf(const char *format, ...)
 	va_list to_be_printed;
 	int chars, bufpos, *buflenptr, *bufposptr, buflen;
 	char buffer[1024];
-	char_funcs conversions[] = {{"c", print_c}, {NULL, NULL},
-		{"s", print_string}};
-
+	char_funcs conversions[] = {{"c", print_c},
+		{"s", print_s}};
 	va_start(to_be_printed, format);
 	initialize_buffer(buffer);
 	chars = bufpos = 0;
