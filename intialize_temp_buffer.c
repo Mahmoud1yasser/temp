@@ -10,6 +10,9 @@ void init_buf(char buffer[])
 {
 	int i;
 
+	buffer = (char *)malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+		return;
 	i = 0;
 	while (i < 1024)
 	{
