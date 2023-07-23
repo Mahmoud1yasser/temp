@@ -61,6 +61,12 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
 /**
  * formatprinter - function search in string format for the %.
  * @format: string which contains list of % indentifier.
+ * @to_be_printed: arguments in printf
+ * @buffer: memory for printing
+ * @*buflenptr: pointer to buffer length
+ * @*bufposptr: pointer to current 
+ * position in buffer
+ * @conversion: pointer to format func.
  * Return: position of identifier.
  */
 int formatprinter(const char *format,
@@ -98,7 +104,7 @@ int formatprinter(const char *format,
  * _printf - clone for original printf
  * @format: pointer for format of
  * arguments
- * Returns: count of printed characters
+ * Return: count of printed characters
  */
 int _printf(const char *format, ...)
 {
