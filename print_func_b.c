@@ -13,9 +13,8 @@
  *
  * @pos: Current position, or index, inside the buffer
  *
- * Return: Returns number of characters copied to buffer, allows for _printf to
- * return proper number of characters printed
- */
+ * Return: Returns number of characters copied to buffer
+*/
 
 int print_integr(va_list args, char buffer[], int *len, int *pos)
 {
@@ -29,6 +28,7 @@ int print_integr(va_list args, char buffer[], int *len, int *pos)
 
 /**
 * print_u - prints the unsigned int
+*
 * @args: number to be printed
 *
 * @buffer: space used for printing
@@ -38,7 +38,8 @@ int print_integr(va_list args, char buffer[], int *len, int *pos)
 * @pos: current buffer index
 *
 * Return: numbers of chars written to buffer
-**/
+*/
+
 int print_u(va_list args, char buffer[], int *len, int *pos)
 {
 	unsigned int c;
