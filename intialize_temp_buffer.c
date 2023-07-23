@@ -2,9 +2,12 @@
 
 /**
  * initialize_buffer - Fill the buffer with null characters for
+ *
  * sake of proper write use
+ *
  * @buffer: The buffer that needs to be initialized
- */
+*/
+
 void initialize_buffer(char buffer[])
 {
 	int i;
