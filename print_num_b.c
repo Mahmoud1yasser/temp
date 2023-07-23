@@ -12,9 +12,6 @@ int print_number(int n, char buffer[], int *len, int *pos)
 {
 	int chars = 0, sign = 0;
 
-	if (*len < 1024)
-	{
-here:
 		if (n == 0)
 		{
 			buffer[*pos] = '0';
@@ -38,19 +35,14 @@ here:
 		if ((n / 10) != 0)
 			chars = print_number(((n / 10) * -1)
 					, buffer, len, pos);
-		buffer[*pos] = (n % 10) * -1 + '0'; *len += 1;
+		buffer[*pos] = (n % 10) * -1 + '0';
+		*len += 1;
 		*pos += 1;
 		if (*len == 1024)
 			write_buf(buffer, len, pos);
 		if (sign > 0)
 			chars += sign;
 		chars++;
-		}
-	else
-	{
-		write_buf(buffer, len, pos);
-		goto here;
-	}
 	return (chars);
 }
 
