@@ -19,7 +19,6 @@ typedef struct char_func
 	char *c;
 	int (*f)();
 } char_funcs;
-
 int _printf(const char *, ...);
 void initialize_buffer(char *);
 int print_c(va_list, char *, int *, int *);
@@ -27,7 +26,7 @@ int print_s(va_list, char *, int *, int *);
 int print_int(va_list, char *, int *, int *);
 int print_u(va_list, char *, int *, int *);
 int print_number(int, char *, int *, int *);
-int print_Unum(unsigned int , char *, int *, int *);
+int print_Unum(unsigned int, char *, int *, int *);
 int print_u(va_list, char *, int *, int *);
 int print_o(va_list, char *, int *, int *);
 int print_hex(va_list, char *, int *, int *);
