@@ -1,14 +1,12 @@
 #include "main.h"
 
 /**
- * initialize_buffer - Fill the buffer with null characters for
- *
- * sake of proper write use
+ * init_buf - Fill the buffer with null characters
  *
  * @buffer: The buffer that needs to be initialized
 */
 
-void initialize_buffer(char buffer[])
+void init_buf(char buffer[])
 {
 	int i;
 
