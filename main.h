@@ -9,10 +9,11 @@
 
 /**
  * struct char_func - structure to find functions based on char
+ *
  * @c: char to be checked as key.
+ *
  * @f: pointer to function to call.
- */
-
+*/
 typedef struct char_func
 {
 	char *c;
@@ -41,4 +42,5 @@ char *octConverter(unsigned int);
 char *hexConverter(char, unsigned int);
 char *size_tHex(char, size_t);
 void write_buffer(char *, int *, int *);
+
 #endif
