@@ -1,26 +1,25 @@
 #include "main.h"
 /**
-* copy_to_buffer - Copies the given character over to the buffer
-* @formatter: Character to copy over
-* @buffer: Buffer being copied to
-* @buflenptr: Pointer to the length of the buffer, the number of
-* characters in the buffer
-* @bufposptr: Pointer to the position in the buffer
+* clone_2_buf - Copies to the buffer
+* @formatter: to be copyied over
+* @buffer: Buffer to copy to
+* @ptr_blen: Pointer to the length of the buffer
+* @ptr_bpos: Pointer to the position in the buffer
 *
 * Return: Number of characters copied to buffer
 */
-int copy_to_buffer(char formatter, char buffer[],
-		     int *buflenptr, int *bufposptr)
+int clone_2_buf(char formatter, char buffer[],
+		     int *ptr_blen, int *ptr_bpos)
 {
 	int chars;
 
 	chars = 0;
-	buffer[*bufposptr] = formatter;
-	*bufposptr += 1;
-	*buflenptr += 1;
-	if (*buflenptr == 1024)
+	buffer[*ptr_bpos] = formatter;
+	*ptr_bpos += 1;
+	*ptr_blen += 1;
+	if (*ptr_blen == 1024)
 	{
-		write_buffer(buffer, buflenptr, bufposptr);
+		write_buf(buffer, ptr_blen, ptr_bpos);
 	}
 	chars++;
 	return (chars);
@@ -28,31 +27,31 @@ int copy_to_buffer(char formatter, char buffer[],
 
 
 /**
-* check_conversion - Checks formatter character to see if
+* check_con - Checks formatter character to see if
 * it's a conversion specifier
 * @formatter: The format character being checked
-* @conversions: Struct holding conversion specifiers & function pointers to
+* @con: Struct holding conversion specifiers & function pointers to
 * @appropriate functions for corresponding conversion specifier
 * @buffer: Buffer needed to copy to when calling function
-* @buflenptr: Pointer to the length of the buffer
-* @bufposptr: Pointer to the position within the buffer
-* @print_this: va_list holding all given arguments to _printf function
+* @ptrblen: Pointer to the length of the buffer
+* @ptrbpos: Pointer to the position within the buffer
+* @ap: va_list holding all given arguments to _printf function
 *
 * Return: Return the number of characters copied to buffer if a
 * function is called, 0 if no function is called
 */
-int check_conversion(char formatter, char_funcs conversions[], char buffer[],
-		     int *buflenptr, int *bufposptr, va_list print_this)
+int check_con(char formatter, char_funcs con[], char buffer[],
+		     int *ptrblen, int *ptrbpos, va_list ap)
 {
 	int j, chars;
 
 	chars = 0;
 	for (j = 0; j < 5; j++)
 	{
-		if (formatter == *conversions[j].c)
+		if (formatter == *con[j].c)
 		{
-			chars += conversions[j].f(print_this, buffer, buflenptr,
-						  bufposptr);
+			chars += con[j].f(ap, buffer, ptrblen,
+						  ptrbpos);
 			return (chars);
 		}
 	}
@@ -69,12 +68,12 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
  * @conversions: pointer to format func.
  * Return: position of identifier.
  */
-int formatprinter(const char *format,
+int formatp(const char *format,
 		va_list to_be_printed, char buffer[],
-		int *buflenptr, int *bufposptr,
-		char_funcs conversions[])
+		int *ptrblen, int *ptrbpos,
+		char_funcs con[])
 {
-	int pos, print, chars;
+	int pos, temp, chars;
 
 	chars = 0;
 	for (pos = 0; format[pos] != '\0' && format != NULL; pos++)
@@ -82,20 +81,20 @@ int formatprinter(const char *format,
 		if (format[pos] == '%')
 		{
 			pos++;
-			print = check_conversion(format[pos],
-					conversions, buffer, buflenptr,
-					bufposptr, to_be_printed);
-			if (print == 0)
+			temp = check_con(format[pos],
+					con, buffer, ptrblen,
+					ptrbpos, to_be_printed);
+			if (temp == 0)
 			{
-				chars += copy_to_buffer(format[pos],
-						buffer, buflenptr, bufposptr);
+				chars += clone_2_buf(format[pos],
+						buffer, ptrblen, ptrbpos);
 			}
-			chars += print;
+			chars += temp;
 		}
 		else
 		{
-			chars += copy_to_buffer(format[pos],
-					buffer, buflenptr, bufposptr);
+			chars += clone_2_buf(format[pos],
+					buffer, ptrblen, ptrbpos);
 		}
 	}
 	return (chars);
@@ -110,28 +109,28 @@ int formatprinter(const char *format,
 int _printf(const char *format, ...)
 {
 	va_list to_be_printed;
-	int chars, bufpos, *buflenptr, *bufposptr, buflen;
+	int chars, bpos, *ptrblen, *ptrbpos, blen;
 	char buffer[1024];
-	char_funcs conversions[] = {{"c", print_c},
-		{"s", print_s},
-		{"i", print_int},
-		{"d", print_int},
+	char_funcs con[] = {{"c", print_char},
+		{"s", print_str},
+		{"i", print_integr},
+		{"d", print_integr},
 		{"u", print_u},
 	};
 	va_start(to_be_printed, format);
-	initialize_buffer(buffer);
-	chars = bufpos = 0;
-	buflen = 1;
-	buflenptr = &buflen;
-	bufposptr = &bufpos;
+	init_buf(buffer);
+	chars = bpos = 0;
+	blen = 1;
+	ptrblen = &blen;
+	ptrbpos = &bpos;
 	if (format == NULL || to_be_printed == NULL)
 	{
 		return (chars);
 	}
-	chars = formatprinter(format, to_be_printed,
-			buffer, buflenptr, bufposptr,
-			conversions);
-	write_buffer(buffer, buflenptr, bufposptr);
+	chars = formatp(format, to_be_printed,
+			buffer, ptrblen, ptrbpos,
+			con);
+	write_buf(buffer, ptrblen, ptrbpos);
 	va_end(to_be_printed);
 	return (chars);
 }
