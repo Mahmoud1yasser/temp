@@ -55,7 +55,7 @@ int check_con(char formatter, char_funcs con[], char buffer[],
 			return (chars);
 		}
 	}
-	return (-1);
+	return (0);
 }
 /**
  * formatp - function search in string format for the %.
