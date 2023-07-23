@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include "header_functions.h"
+#include "main.h"
 
 /**
  * write_buffer - Print out the buffer of all characters to print

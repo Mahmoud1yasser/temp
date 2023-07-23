@@ -1,4 +1,4 @@
-#include "header_functions.h"
+#include "main.h"
 #include <stdarg.h>
 #include <stdlib.h>
 

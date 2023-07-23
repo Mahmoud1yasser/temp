@@ -1,4 +1,4 @@
-#include "header_functions.h"
+#include "main.h"
 
 /**
  * initialize_buffer - Fill the buffer with null characters for

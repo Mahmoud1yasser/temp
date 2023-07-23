@@ -1,4 +1,4 @@
-#include "header_functions.h"
+#include "main.h"
 /**
 * copy_to_buffer - Copies the given character over to the buffer
 * @formatter: Character to copy over
