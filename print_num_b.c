@@ -2,7 +2,7 @@
 /**
  * print_number - Copy one digit at a time to the buffer
  * @n: The integer to print
- * @buffer: Buffer 
+ * @buffer: Buffer
  * @len: Length of the buffer,
  * @pos: Position in the buffer
  *
@@ -14,6 +14,7 @@ int print_number(int n, char buffer[], int *len, int *pos)
 	int sign;
 
 	chars = sign = 0;
+
 	if (*len < 1024)
 	{
 		if (n == 0)
@@ -102,6 +103,7 @@ int print_Unum(unsigned int n, char buffer[], int *len, int *pos)
 	int num_Chars;
 
 	num_Chars = 0;
+
 	if (*len < 1024)
 	{
 		if (n == 0)
