@@ -87,8 +87,6 @@ int formatprinter(const char *format,
 		}
 		else
 		{
-		 	/* copy to buffer*/
-			/* increase count of printed chars*/
 			chars += copy_to_buffer(format[pos],
 					buffer, buflenptr, bufposptr);
 		}
@@ -115,11 +113,10 @@ int _printf(const char *format, ...)
 	buflen = 1;
 	buflenptr = &buflen;
 	bufposptr = &bufpos;
-	/* should be moved up as its decleration*/
 	if (format == NULL || to_be_printed == NULL)
-		{
-			return (chars);
-		}
+	{
+		return (chars);
+	}
 	formatprinter(format, to_be_printed,
 			buffer, buflenptr, bufposptr,
 			conversions);
