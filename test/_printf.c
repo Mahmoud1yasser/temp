@@ -58,12 +58,15 @@ int check_conversion(char formatter, char_funcs conversions[], char buffer[],
 	}
 	return (0);
 }
-
-/** formatprinter - function search in string format for the %.
+/**
+ * formatprinter - function search in string format for the %.
  * @format: string which contains list of % indentifier.
  * Return: position of identifier.
  */
-int formatprinter(const char *format, va_list to_be_printed, char buffer[], int *buflenptr, int *bufposptr, char_funcs conversions[])
+int formatprinter(const char *format,
+		va_list to_be_printed, char buffer[],
+		int *buflenptr, int *bufposptr,
+		char_funcs conversions[])
 {
 	int pos, print, chars;
 
@@ -72,10 +75,13 @@ int formatprinter(const char *format, va_list to_be_printed, char buffer[], int 
 		if (format[pos] == '%')
 		{
 			pos++;
-			print = check_conversion(format [pos], conversions, buffer, buflenptr, bufposptr, to_be_printed);
+			print = check_conversion(format[pos],
+					conversions, buffer, buflenptr,
+					bufposptr, to_be_printed);
 			if (print == 0)
 			{
-				chars += copy_to_buffer(format[pos], buffer, buflenptr, bufposptr);
+				chars += copy_to_buffer(format[pos],
+						buffer, buflenptr, bufposptr);
 			}
 			chars += print;
 		}
